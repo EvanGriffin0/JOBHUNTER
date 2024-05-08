@@ -11,8 +11,8 @@
   <div class="centered-container">
     <ion-card *ngIf="currentJob" class="center-card-text" color="primary">
       <ion-card-header class="center-text" style="text-align: center;">
-        <ion-title *ngIf="userLocation">Searching for jobs near: {{ userLocation }}</ion-title>
-        <ion-title style="font-weight: bold; font-size: 300%;">{{ currentJob.title }}</ion-title>
+        <ion-title  *ngIf="userLocation">Searching for jobs near: {{ userLocation }}</ion-title>
+        <ion-title style="font-weight: bold; font-size: 100;">{{ currentJob.title }}</ion-title>
       </ion-card-header>
 
       <div class="image-container">
@@ -30,8 +30,8 @@
 
     <ion-footer class="centered-buttons">
       <div class="button-container">
-        <ion-button (click)="handleApply(true)" color="success" style="font-size: 500%; font-weight: bold;">Accept</ion-button>
-        <ion-button (click)="handleApply(false)" color="danger" style="font-size: 500%; font-weight: bold;">Reject</ion-button>
+        <ion-button (click)="handleApply(true)" color="success" style="font-size: 200%; font-weight: bold;">Accept</ion-button>
+        <ion-button (click)="handleApply(false)" color="danger" style="font-size: 200%; font-weight: bold;">Reject</ion-button>
       </div>
     </ion-footer>
     </ion-card>

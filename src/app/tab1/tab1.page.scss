@@ -42,7 +42,7 @@
   @media screen and (max-width: 600px) {
     .center-text ion-card-header ion-title {
       font-size: 14px; /* Decrease font size for job title */
-      word-wrap: break-word; /* Enable word wrapping for job title */
+      word-wrap: break-word; 
     }
   
     .button-container {
@@ -52,7 +52,12 @@
   
     .button-container ion-button {
       width: 100%; /* Set button width to 100% */
-      margin-bottom: 5px; /* Add some space between buttons */
+      font-size: 100%;
+      margin-bottom: 2px; /* Add some space between buttons */
+    }
+
+    .hidden{
+      display: none;
     }
   }
 

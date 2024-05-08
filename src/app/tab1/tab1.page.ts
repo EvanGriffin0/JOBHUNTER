@@ -3,7 +3,9 @@ import { JobService } from '../job.service'; // Import the JobService
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular'; 
-
+import { CvService } from '../cv.service';
+import { HttpClient } from '@angular/common/http';
+import { Tab3Page } from '../tab3/tab3.page';
 
 
 
@@ -14,13 +16,20 @@ import { LoadingController } from '@ionic/angular';
   
 })
 
+
 export class Tab1Page implements OnInit {
   jobs: any[] = [];
   currentJob: any;
  
-  cvAvailable: boolean = true;
+  cvAvailable: boolean = false;
 
-  constructor(private jobService: JobService, private router: Router, private loadingController: LoadingController) {}
+  constructor(private jobService: JobService, private router: Router, private loadingController: LoadingController, private cvService: CvService, private http: HttpClient) {
+
+    this.cvService.cvAvailable$.subscribe(cvAvailable => {
+      this.cvAvailable = cvAvailable;
+  });
+
+  }
   userLocation: string = '';
 
   imagePaths: string[] = ['./assets/stockImage1.jpg', './assets/stockImage2.jpg', './assets/stockImage3.jpg', './assets/stockImage4.jpg', './assets/stockImage5.jpg'];
@@ -78,10 +87,11 @@ export class Tab1Page implements OnInit {
 
   async handleApply(accepted: boolean): Promise<void> {
     if (accepted) {
-      
+      const jobTitle = this.currentJob.title;
       if (!this.cvAvailable) {
         // Redirect to CV setup page if CV is not available
-        this.router.navigateByUrl('/tabs/tab2');
+        alert('You do not have a CV. Please go to the CV tab to create one.');
+        this.router.navigateByUrl(`/tabs/tab2 `);
       } else {
         // Show loading bar while processing application
         const loading = await this.loadingController.create({
@@ -89,15 +99,24 @@ export class Tab1Page implements OnInit {
         });
         await loading.present();
   
-        // Simulate application submission (replace with actual logic)
-        setTimeout(() => {
-          // Dismiss loading bar
-          loading.dismiss();
-          this.getNextJob();
-          this.cycleImage();
-          this.changeBackgroundColor();
-         
-        }, 1000); // Adjust delay as needed
+        // Save job titles to an array
+        const jobTitles: string[] = [jobTitle];
+  
+        //pass array to service to save to external link
+        this.jobService.saveJobTitles(jobTitles).subscribe(
+          (response) => {
+            console.log('Job titles saved successfully:', response);
+  
+            loading.dismiss();
+            this.getNextJob();
+            this.cycleImage();
+            this.changeBackgroundColor();     
+          },
+          (error) => {
+            console.error('Error saving job titles:', error);
+            loading.dismiss();
+          }
+        );
       }
     } else {
       // If rejected, proceed to the next job without any additional actions
@@ -106,8 +125,6 @@ export class Tab1Page implements OnInit {
       this.changeBackgroundColor();
     }
   }
-  
-
 
   changeBackgroundColor(): void {
     // Increment the current background color index

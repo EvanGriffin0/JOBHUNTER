@@ -1,17 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Applications
+      Job Applications
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <!-- Display job titles -->
+    <ion-item *ngFor="let job of jobTitles; let i = index">
+      <ion-label>{{ job }}</ion-label>
+      <!-- Button to reveal status -->
+      <ion-button (click)="handleButtonClick(i)" [color]="getStatusColor(jobApplications[i]?.status)">
+        {{ jobApplications[i]?.status ? jobApplications[i].status : 'Click to reveal' }}
+      </ion-button>
+    </ion-item>
+  </ion-list>
 
-  <app-explore-container name="Displays Applications Sent and if Rejected or not"></app-explore-container>
+  <!-- Display job applications with background color based on status -->
+  <ion-list>
+    <ion-item *ngFor="let application of jobApplications; let i = index" [ngStyle]="{ 'background-color': getStatusColor(application.status) }">
+      {{ application.title }}
+      <ion-label>{{ application.status }}</ion-label>
+      <ion-button (click)="handleButtonClick(i)" [color]="getStatusColor(application.status)">
+        Change Status
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
