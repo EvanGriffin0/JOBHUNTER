@@ -1,17 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Job Search Page
     </ion-title>
+  
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="centered-container">
+    <ion-card *ngIf="currentJob" class="center-card-text" color="primary">
+      <ion-card-header class="center-text" style="text-align: center;">
+        <ion-title *ngIf="userLocation">Searching for jobs near: {{ userLocation }}</ion-title>
+        <ion-title style="font-weight: bold; font-size: 300%;">{{ currentJob.title }}</ion-title>
+      </ion-card-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <div class="image-container">
+        <ion-img [src]="imagePaths[currentImagePathIndex]" alt="Job Image"></ion-img>
+      </div>
+      <br>
+
+      <div>
+      <ion-card-content class="center-text">
+        <p style="font-size: 250%; font-weight: bold; text-align: center;">Salary: {{ currentJob.salary }}</p>
+        <p style="font-size: 250%; font-weight: bold; text-align: center;">Experience: {{ currentJob.yearsOfExperience }} years</p>
+        <p style="font-size: 250%; font-weight: bold; text-align: center;">Type: {{ currentJob.fullTime ? 'Full Time' : 'Part Time' }}</p>
+      </ion-card-content>
+    </div>
+
+    <ion-footer class="centered-buttons">
+      <div class="button-container">
+        <ion-button (click)="handleApply(true)" color="success" style="font-size: 500%; font-weight: bold;">Accept</ion-button>
+        <ion-button (click)="handleApply(false)" color="danger" style="font-size: 500%; font-weight: bold;">Reject</ion-button>
+      </div>
+    </ion-footer>
+    </ion-card>
+  
+
+  </div>
 </ion-content>
+

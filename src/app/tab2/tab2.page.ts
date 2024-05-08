@@ -9,4 +9,11 @@ export class Tab2Page {
 
   constructor() {}
 
+  saveToJson(){
+    alert('save to json');
+  }
+  viewJson(){
+    alert('view json'); 
+
+  }
 }

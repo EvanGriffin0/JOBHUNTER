@@ -1,17 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Cv Fill in
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding custom-background">
+  
+  <div class="ion-text-center">
+    <ion-item>
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input type="text" placeholder="Enter your first name"></ion-input>
+    </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-item>
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input type="text" placeholder="Enter your last name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Previous Job</ion-label>
+      <ion-input type="text" placeholder="Enter your previous job"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Years of Experience</ion-label>
+      <ion-input type="number" placeholder="Enter years of experience"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Full or Part-time Work</ion-label>
+      <ion-select placeholder="Select work type">
+        <ion-select-option value="full-time">Full-time</ion-select-option>
+        <ion-select-option value="part-time">Part-time</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" (click)="saveToJson()">Save CV</ion-button>
+    <ion-button expand="block" (click)="viewJson()">View CV</ion-button>
+
+  </div>
+
 </ion-content>

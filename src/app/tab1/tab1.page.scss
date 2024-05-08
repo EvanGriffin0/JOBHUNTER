@@ -1,0 +1,64 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150%;
+    width: auto;
+  }
+  
+  .center-card-text {
+    width: 90%;
+    height: 80%;
+    padding: 10px;
+    background-color: lightslategrey; /* Initial background color */
+    transition: background-color 0.5s ease; /* Smooth transition for color change */
+  }
+  
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  /* Adjust the width and height of the image */
+  .image-container ion-img {
+    max-width: 100%; /* Adjusted to fill the container */
+    max-height: 100%; /* Adjusted to fill the container */
+    padding: 10px;
+  }
+  
+  //adjust the sizes to better fit mobile 
+
+  @media screen and (max-width: 600px) {
+    .center-text ion-card-header ion-title {
+      font-size: 14px; /* Decrease font size for job title */
+      word-wrap: break-word; /* Enable word wrapping for job title */
+    }
+  
+    .button-container {
+      flex-direction: column; /* Stack buttons vertically */
+      margin-top: 10px; /* Add some space between buttons */
+    }
+  
+    .button-container ion-button {
+      width: 100%; /* Set button width to 100% */
+      margin-bottom: 5px; /* Add some space between buttons */
+    }
+  }
+
+  .user-location {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px; /* Adjust as needed */
+    margin-bottom: 10px; /* Adjust as needed */
+  }
