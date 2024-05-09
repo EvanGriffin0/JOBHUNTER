@@ -1,13 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Cv Fill in
+      Fill in your Cv
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding custom-background">
   
+  <!--html layout for entering in the data--> 
   <div class="ion-text-center">
     <ion-item>
       <ion-label position="stacked">First Name</ion-label>
@@ -37,6 +38,7 @@
       </ion-select>
     </ion-item>
 
+    <!--two buttons with options to save the cv  or view it , both using click -->
     <ion-button expand="block" (click)="saveToJson()">Save CV</ion-button>
     <ion-button expand="block" (click)="viewJson()">View CV</ion-button>
 

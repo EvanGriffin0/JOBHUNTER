@@ -1,3 +1,5 @@
+
+//importing the neccessary modules
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { CvService } from '../cv.service';
@@ -7,11 +9,11 @@ import { CvService } from '../cv.service';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+ export class Tab2Page {
   constructor(private alertController: AlertController,private cvService: CvService) {}
 
-  // Takes the users input and saves it to a JSON file
-  saveToJson() {
+  // method Takes the users input and saves it to a JSON file
+  async saveToJson() {
     // Get the input values from the HTML elements
     const firstName = (document.querySelector('ion-input[placeholder="Enter your first name"]') as HTMLIonInputElement).value;
     const lastName = (document.querySelector('ion-input[placeholder="Enter your last name"]') as HTMLIonInputElement).value;
@@ -19,27 +21,56 @@ export class Tab2Page {
     const yearsOfExperience = (document.querySelector('ion-input[placeholder="Enter years of experience"]') as HTMLIonInputElement).value;
     const workType = (document.querySelector('ion-select') as HTMLIonSelectElement).value;
 
-    // Create a JavaScript object with the input values
-    const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      previousJob: previousJob,
-      yearsOfExperience: yearsOfExperience,
-      workType: workType
-    };
+    //check if the inputs are blank
+    if(firstName === '' || lastName === '' || previousJob === '' || yearsOfExperience === '' || workType === '') {
 
-    // Convert the JavaScript object to JSON format
-    const jsonData = JSON.stringify(userData);
+      
+//if they are notify the user that they need to fill in all the fields
+      const alert = await this.alertController.create({
+        header: 'Your Cv',
+        message: 'Please fill in all the fields',
+        buttons: ['OK']
+      });
 
-    // Save the JSON data
-    localStorage.setItem('user_data', jsonData);
-    alert("Cv has been saved successfully");
-    this.cvService.updateCvAvailable(true);
+      // Present the alert
+      (await alert).present();
+      
+    }
+    else{
+
+      // Create a object with the input values
+      const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        previousJob: previousJob,
+        yearsOfExperience: yearsOfExperience,
+        workType: workType
+      };
+
+      // Convert the  object to JSON format
+      const jsonData = JSON.stringify(userData);
+
+      // Save the JSON data
+      localStorage.setItem('user_data', jsonData);
+
+      //alert the user that the cv has been saved
+      const alert = await this.alertController.create({
+        header: 'Your Cv',
+        message: 'Cv has been saved successfully',
+        buttons: ['OK']
+      });
+
+      // Present the alert
+      (await alert).present();
+
+      //update the boolean in tab 1 to allow the user to apply to jobs
+      this.cvService.updateCvAvailable(true);
+          }
   }
 
-  // Gets the saved JSON data  and displays it to the user
-  // Gets the saved JSON data from localStorage and displays it to the user in a card
+  //this method Gets the saved JSON data and displays it to the user 
   async viewJson() {
+
     // Retrieve the JSON data from localStorage
     const jsonData = localStorage.getItem('user_data');
 
@@ -48,17 +79,17 @@ export class Tab2Page {
       const userData = JSON.parse(jsonData);
 
       // Create the message to display in the card
-      const message = `
-            First Name:${userData.firstName}
-            Last Name:${userData.lastName}
-            Previous Job:${userData.previousJob}
-            Years of Experience: ${userData.yearsOfExperience}
-            Work Type:${userData.workType}
-      `;
+        const message = `
+        First Name: ${userData.firstName}\n
+        Last Name: ${userData.lastName}\n
+        Previous Job: ${userData.previousJob}\n
+        Years of Experience: ${userData.yearsOfExperience}\n
+        Work Type: ${userData.workType}\n
+        `;
 
       // Create the alert with the card message
       const alert = await this.alertController.create({
-        header: 'View JSON Data',
+        header: 'Your Cv',
         message: message,
         buttons: ['OK']
       });

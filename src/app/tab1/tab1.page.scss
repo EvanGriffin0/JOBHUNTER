@@ -1,69 +1,174 @@
+
+*{
+  --ion-background-color : #293241;
+  --ion-toolbar-background: #3d5a80;
+  --ion-tab-bar-color: #d18725;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+
 .centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150%;
-    width: auto;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150%;
+  width: auto;
+}
+
+.center-card-text {
+  width: 50%;
+  height: 100%;
+  background-color: lightslategrey; 
+  transition: background-color 0.5s ease; 
+  border: 10px solid rgb(84, 82, 100); 
+
+}
+
+.details{
+  background-color: #293241;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
   
-  .center-card-text {
-    width: 90%;
-    height: 80%;
-    padding: 10px;
-    background-color: lightslategrey; /* Initial background color */
-    transition: background-color 0.5s ease; /* Smooth transition for color change */
+}
+
+
+.image-container ion-img {
+  max-width: 130%; 
+  max-height: 100%;
+  padding-top: 20px;
+
+
+}
+
+.user-location {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px; 
+  margin-bottom: 10px; 
+}
+
+.center-text{
+  background-color: #293241;
+  color:#FFF;
+ 
+}
+
+.buttonw{
+  font-size: 600%;
+   font-weight: bold; 
+   border: 2px solid black;
+}
+
+.jobDescription{
+  font-size: small;
+  font-size: 150%;
+   font-weight: bold;
+    text-align: left;
+}
+
+.title{
+  font-weight: bold; 
+  font-size: 300%;
+}
+
+
+//adjust the sizes to better fit mobile 
+
+@media screen and (max-width: 600px) {
+  .center-text ion-card-header ion-title {
+    font-size: 14px; 
+    word-wrap: break-word; 
+    border: 0px solid black; 
+
   }
-  
 
   .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
+    flex-direction: column; 
+    height: 150px;
+    border: 0px solid black; 
+
   }
-  
+
+  .centered-container {
+    flex-direction: column; 
+    border: 0px solid rgb(84, 82, 100);
+
+  }
+
+  .button-container ion-button {
+    width: 95%;
+    height: 100%;
+    font-size: 100%;
+    border: 0px solid black; 
+
+    margin-bottom: 0px; 
+  }
+
+  .hidden{
+    display: none;
+  }
+
+
+  .center-card-text {
+    width: 100%;
+    height: 100%;
+    border: 0px solid black; 
+    background-color: lightslategrey; 
+        transition: background-color 0.5s ease;
+  }
   .image-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 200px;
+    border: 0px solid black; 
+
+  }
+  .center-text{
+    background-color: #293241;
+    color:#FFF;
+    border: 0px solid black; 
+
   }
   
-  /* Adjust the width and height of the image */
-  .image-container ion-img {
-    max-width: 100%; /* Adjusted to fill the container */
-    max-height: 100%; /* Adjusted to fill the container */
-    padding: 10px;
-  }
-  
-  //adjust the sizes to better fit mobile 
 
-  @media screen and (max-width: 600px) {
-    .center-text ion-card-header ion-title {
-      font-size: 14px; /* Decrease font size for job title */
-      word-wrap: break-word; 
-    }
-  
-    .button-container {
-      flex-direction: column; /* Stack buttons vertically */
-      margin-top: 10px; /* Add some space between buttons */
-    }
-  
-    .button-container ion-button {
-      width: 100%; /* Set button width to 100% */
-      font-size: 100%;
-      margin-bottom: 2px; /* Add some space between buttons */
-    }
+  .jobDescription{
+    border: 0px solid black;
 
-    .hidden{
-      display: none;
-    }
+    font-size: small;
+    font-size: 150%;
+     font-weight: bold;
+      text-align: left;
   }
 
-  .user-location {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px; /* Adjust as needed */
-    margin-bottom: 10px; /* Adjust as needed */
+  .title{
+        font-weight: bold; 
+        font-size: 150%;
+      }
+      
+  .buttonw{
+      font-size: 500%;
+      font-weight: bold; 
+      border: 2px solid black;
   }
+
+}
+

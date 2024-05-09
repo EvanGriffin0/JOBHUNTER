@@ -1,17 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Job Advertisement 
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 4</ion-title>
+  <ion-header >
+    <ion-toolbar >
+      <ion-title>
+        Job Advertisement 
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Area for Advertising Jobs"></app-explore-container>
+
+  <!--Similar idea to tab 2 where you have input for the use to enter there detailsd with a button to click -->
+  <div class="job-form">
+    <ion-item>
+      <ion-label position="stacked">Job Title</ion-label>
+      <ion-input type="text" [(ngModel)]="jobTitle"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Salary</ion-label>
+      <ion-input type="text" [(ngModel)]="salary"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Years of Experience Needed</ion-label>
+      <ion-input type="text" [(ngModel)]="yearsOfExperience"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Position Type</ion-label>
+      <ion-select [(ngModel)]="positionType">
+        <ion-select-option value="Full-time">Full-time</ion-select-option>
+        <ion-select-option value="Part-time">Part-time</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" (click)="addJobDetails()">Post Job</ion-button>
+  </div>
 </ion-content>

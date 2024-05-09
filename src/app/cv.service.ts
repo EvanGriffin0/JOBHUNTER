@@ -17,6 +17,7 @@ export class CvService {
 
   // Method to update cvAvailable
   updateCvAvailable(cvAvailable: boolean): void {
+    //change the value of cvAvailable
     this.cvAvailableSubject.next(cvAvailable);
   }
 }

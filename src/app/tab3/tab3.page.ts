@@ -1,5 +1,10 @@
+
+//importing the neccessary modules
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../job.service';
+import { CvService } from '../cv.service';
+import { AlertController } from '@ionic/angular';
+
 
 
 @Component({
@@ -10,17 +15,21 @@ import { JobService } from '../job.service';
 
 export class Tab3Page implements OnInit {
 
+
+  //declare arrays and variables
   jobApplications: { title: string, status: string, clicked: boolean }[] = [];
   jobTitles: string[] = [];
 
-  
+  backgroundColor: string = "success";
 
-  constructor(private jobService: JobService) {}
+  constructor(private jobService: JobService, private CvService: CvService,private AlerController:AlertController) {}
 
+  //load the job applications on initial load
   ngOnInit() {
     this.loadJobApplications();
   }
 
+  //Method to load the job titles from the database
   loadJobApplications() {
     this.jobService.getExistingJobTitles().subscribe(
       (applications: any[]) => {
@@ -38,32 +47,32 @@ export class Tab3Page implements OnInit {
     );
   }
   
-
-  getRandomStatus(): string {
-    const statuses = ['accepted', 'interview', 'rejected'];
-    const randomIndex = Math.floor(Math.random() * statuses.length);
-    return statuses[randomIndex];
+  //returns a random number between 0 and 3
+  getRandomStatus(): number {
+    return Math.floor(Math.random() * 3);
   }
 
-handleButtonClick(index: number): void {
-  if (this.jobApplications[index] && !this.jobApplications[index].clicked) {
-    const randomStatus = this.getRandomStatus();
-    this.jobApplications[index].status = randomStatus; // Update status
-    this.jobApplications[index].clicked = true; // Mark as clicked
-  }
-}
+//call the service to delete all the job titles on the external link
+deleteApplications(): void {
 
-getStatusColor(status: string | undefined): string {
-  switch (status) {
-    case "accepted":
-      return 'balanced'; // Green color for accepted
-    case "interview":
-      return 'energized'; // Yellow color for interview
-    case "rejected":
-      return 'assertive'; // Red color for rejected
-    default:
-      return 'medium'; // Default color
-  }
+  //calls method from service file
+  this.jobService.deleteJobTitles().subscribe(
+    () => {
+      // Handle success
+      console.log('Job titles deleted successfully.');
+      //reload the pagfe tyo display the deletion
+      window.location.reload();
+      this.CvService.updateCvAvailable(true);
+    },
+    (error) => {
+      // Handle error
+      console.error('Failed to delete job titles:', error);
+    }
+  );
+  //UPDATES the boolean to true 
+
+  this.CvService.updateCvAvailable(true);
+
 }
 
 }

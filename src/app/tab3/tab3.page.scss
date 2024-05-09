@@ -9,3 +9,21 @@
 .rejected {
   background-color: red;
 }
+
+.buttonAndTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.custom-background {
+  background-color: aqua;
+}
+
+
+*{
+  --ion-background-color : #293241;
+  --ion-toolbar-background: #3d5a80;
+  --ion-tab-bar-color: #d18725;
+}

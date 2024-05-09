@@ -17,6 +17,6 @@ import { JobService } from '../job.service';//import job service file
     Tab1PageRoutingModule
   ],
   declarations: [Tab1Page],
-  providers: [JobService] // Add JobService to the providers array
+  providers: [JobService] 
 })
 export class Tab1PageModule {}

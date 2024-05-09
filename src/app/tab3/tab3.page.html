@@ -6,26 +6,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <!-- Display job titles -->
-    <ion-item *ngFor="let job of jobTitles; let i = index">
-      <ion-label>{{ job }}</ion-label>
-      <!-- Button to reveal status -->
-      <ion-button (click)="handleButtonClick(i)" [color]="getStatusColor(jobApplications[i]?.status)">
-        {{ jobApplications[i]?.status ? jobApplications[i].status : 'Click to reveal' }}
-      </ion-button>
-    </ion-item>
-  </ion-list>
 
-  <!-- Display job applications with background color based on status -->
-  <ion-list>
-    <ion-item *ngFor="let application of jobApplications; let i = index" [ngStyle]="{ 'background-color': getStatusColor(application.status) }">
-      {{ application.title }}
-      <ion-label>{{ application.status }}</ion-label>
-      <ion-button (click)="handleButtonClick(i)" [color]="getStatusColor(application.status)">
-        Change Status
+<ion-content class="custom-background" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+  <!--for as long as there is job titles this will create new labels to display the job applications-->
+  <ion-list *ngIf="jobTitles.length > 0; else noJobs">
+    <ion-item *ngFor="let job of jobTitles; let i = index;" class="buttonAndTitle">
+      <ion-fab-button style="width:3%; height:70%; padding:0.4%;"></ion-fab-button>
+     <!--display job of jobTitles-->
+      <ion-label>{{ job }}</ion-label>
+     <!--randomly assign a fail or success or interview to the job titles-->
+      <ion-button [color]="(i % 3 === 0) ? 'success' : (i % 2 === 0) ? 'warning' : 'danger'">
+        {{ (i % 3 === 0) ? 'Accepted' : (i % 2 === 0) ? 'Interview' : 'Rejected' }}
       </ion-button>
     </ion-item>
   </ion-list>
+  <ng-template #noJobs>
+    <div style="text-align: center; padding-top: 20%; font-size: 100;">
+      You have not applied to any jobs yet
+    </div>
+  </ng-template>
+  <ion-button *ngIf="jobTitles.length > 0" (click)="deleteApplications()" style="justify-content:center; font-size: 100;">Delete Applications</ion-button>
 </ion-content>

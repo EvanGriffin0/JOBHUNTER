@@ -7,31 +7,40 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <div class="centered-container">
     <ion-card *ngIf="currentJob" class="center-card-text" color="primary">
-      <ion-card-header class="center-text" style="text-align: center;">
-        <ion-title  *ngIf="userLocation">Searching for jobs near: {{ userLocation }}</ion-title>
-        <ion-title style="font-weight: bold; font-size: 100;">{{ currentJob.title }}</ion-title>
+      <ion-card-header class="center-text" style="text-align: center;color: #FFFF;">
+
+        <!--created html structure to display the location gotten with the api and the current job title being displayed-->
+        <ion-title  *ngIf="userLocation">Location: {{ userLocation }}</ion-title>
+        <ion-title class="title" >{{ currentJob.title }}</ion-title>
       </ion-card-header>
 
+      <!--image is kept here-->
       <div class="image-container">
-        <ion-img [src]="imagePaths[currentImagePathIndex]" alt="Job Image"></ion-img>
+        <ion-img style="width: 100%;height:100%;" [src]="imagePaths[currentImagePathIndex]" alt="Job Image"></ion-img>
       </div>
       <br>
 
-      <div>
+      
+      <!--this is where i stored the job description-->
+      <div class="details">
       <ion-card-content class="center-text">
-        <p style="font-size: 250%; font-weight: bold; text-align: center;">Salary: {{ currentJob.salary }}</p>
-        <p style="font-size: 250%; font-weight: bold; text-align: center;">Experience: {{ currentJob.yearsOfExperience }} years</p>
-        <p style="font-size: 250%; font-weight: bold; text-align: center;">Type: {{ currentJob.fullTime ? 'Full Time' : 'Part Time' }}</p>
+        <p style="font-size: 150%; font-weight: bold; text-align: left;">Job Details:</p>
+
+        <!--grabs the data from the typescript file to display the current job details-->
+        <p class="jobDescription" >Salary: {{ currentJob.salary }}</p>
+        <p class="jobDescription" >Experience: {{ currentJob.yearsOfExperience }} years</p>
+        <p class="jobDescription">Type: {{ currentJob.fullTime ? 'Full Time' : 'Part Time' }}</p>
       </ion-card-content>
     </div>
 
+    <!--these are the buttons used to apply to the jobs or not-->
     <ion-footer class="centered-buttons">
       <div class="button-container">
-        <ion-button (click)="handleApply(true)" color="success" style="font-size: 200%; font-weight: bold;">Accept</ion-button>
-        <ion-button (click)="handleApply(false)" color="danger" style="font-size: 200%; font-weight: bold;">Reject</ion-button>
+        <ion-button class="buttonw"(click)="handleApply(true)" color="success" >Accept</ion-button>
+        <ion-button (click)="handleApply(false)" color="danger" class="buttonw" >Reject</ion-button>
       </div>
     </ion-footer>
     </ion-card>
@@ -39,4 +48,3 @@
 
   </div>
 </ion-content>
-
