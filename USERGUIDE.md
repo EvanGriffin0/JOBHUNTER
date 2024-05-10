@@ -35,14 +35,14 @@ Additional Tips:
 
 
 Developer  features:
--runs from ionic serve
+- runs from ionic serve
 - move between 4 differrent pages
--using a ionic plugin to gather geolocation
+- using a ionic plugin to gather geolocation
 - using googles map api to convert location to the nearest city
--stores and retrieves data from 2 external link json files
-- Data persistence throughout app , cv saved from previous app use still appears upon app refresh
--structured in an easy to use and engaging ui
-- code is commented 
+- stores and retrieves data from 2 external link json files
+ -  Data persistence throughout app , cv saved from previous app use still appears upon app refresh
+- structured in an easy to use and engaging ui
+  - code is commented 
 
 
 That's it! You're now ready to make the most of JobHunters, If you have any further questions or need assistance, feel free to reach out to our support team. Happy job hunting!
